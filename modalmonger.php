@@ -1,9 +1,11 @@
 <?php
 /*
 Plugin Name: Modal Monger
+Plugin URI:  https://github.com/andrewklimek/modalmonger/
 Description: a very light modal shortcode that isn't that ugly
-Version:     0.2
+Version:     1.1
 Author:      Andrew J Klimek
+Author URI:  https://readycat.net
 License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
