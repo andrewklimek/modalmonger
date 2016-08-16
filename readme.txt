@@ -20,7 +20,7 @@ Uses just a small amount of JavaScript, no extra scripts or libraries to load.
 
 Simply wrap the shortcode around any content you want, for example:
 
-[modalmonger text='Click Here' href='//getjavascript.com']<h1>Register</h1>[formidable id=25][/modalmonger]
+[modalmonger label='Click Here' class='button' href='//getjavascript.com']<h1>Register</h1>[formidable id=25][/modalmonger]
 
 Here's an overview of the attributes.  All are optional.
 

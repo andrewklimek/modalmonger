@@ -23,6 +23,9 @@ You should have received a copy of the GNU General Public License
 along with Modal Monger. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
+
+// TODO sanitize label attribute
+
 add_action( 'wp_enqueue_scripts', function() {
 	$suffix = SCRIPT_DEBUG ? '' : '.min';
 	wp_register_style( 'modalmonger', plugin_dir_url( __FILE__ ) . 'modalmonger' . $suffix . '.css', array(), null, 'screen' );
@@ -41,8 +44,8 @@ function modalmonger_shortcode( $atts, $content = '' ) {
 	if ( ! $content && empty($atts['login'] ) ) return '<code>Please add a closing [/modalmonger] shortcode at the end of the modal content</code>';
 	
 	// Load previously registered scripts only if shortcode is used.
-	wp_enqueue_style( 'modalmonger', plugin_dir_url( __FILE__ ) . 'modalmonger.css' );
-	wp_enqueue_script( 'modalmonger', plugin_dir_url( __FILE__ ) . 'modalmonger.js' );
+	wp_enqueue_style( 'modalmonger' );
+	wp_enqueue_script( 'modalmonger' );
 
 	$atts = shortcode_atts( array(
 		'id' => 0,
@@ -58,7 +61,7 @@ function modalmonger_shortcode( $atts, $content = '' ) {
 	// Cleaning up, using empty(), and re-stating defaults since they can filter with 'shortcode_atts_modalmonger'
 	
 	$id = empty( $atts['id'] ) ? '' : " id='". sanitize_html_class( $atts['id'] ) ."'";
-	$label = ! isset( $atts['label'] ) ? 'Click Me' : wp_kses_post( $atts['label'] );// !isset because they can set label='' for no label.
+	$label = ! isset( $atts['label'] ) ? 'Click Me' : $atts['label'];// !isset because they can set label='' for no label.
 	$href = empty( $atts['href'] ) ? '' : esc_url( $atts['href'] );
 	$class = empty( $atts['class'] ) ? '' : " class='". sanitize_html_class( $atts['class'] ) ."'";
 	$suffix = empty( $atts['suffix'] ) ? mt_rand() : preg_replace( '/[^-\w]/', '', $atts['suffix'] );
@@ -72,7 +75,7 @@ function modalmonger_shortcode( $atts, $content = '' ) {
 		<div id='modalmonger-{$suffix}' class='modalmonger' style='display:none;'>
 			<div class='modalmonger-content'{$style}>
 				<a class='modalmonger-close' href='/' data-modalmonger='{$suffix}'>
-				<svg viewBox='0 0 24 24'><path d='M13.427,12l9.276-9.276c0.396-0.396,0.396-1.032,0-1.427c-0.399-0.396-1.031-0.396-1.427,0L12,10.573L2.723,1.297c-0.395-0.396-1.033-0.396-1.427,0c-0.395,0.394-0.395,1.031,0,1.427L10.573,12l-9.276,9.276c-0.395,0.396-0.395,1.029,0,1.427c0.395,0.396,1.032,0.396,1.427,0L12,13.427l9.276,9.276c0.396,0.396,1.029,0.396,1.427,0c0.396-0.399,0.396-1.031,0-1.427L13.427,12z'/></svg>
+				<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M13.4 12l9.3-9.3c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0L12 10.6 2.7 1.3c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l9.3 9.3-9.3 9.3c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0l9.3-9.3 9.3 9.3c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4L13.4 12z'/></svg>
 				</a>
 				{$content}
 			</div>

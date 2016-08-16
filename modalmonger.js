@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function(){
 				var id = this.href.split( urlTrigger.prefix )[1];
 			}
 			if (id){
-				document.getElementById('modalmonger-' + id).style.display = 'block';
+				document.getElementById('modalmonger-' + id).style.display = 'flex';
 			} else {// Cases of href prefix but no suffix.. hopefully only one modal
-				document.querySelector('div[id|=modalmonger]').style.display = 'block';
+				document.querySelector('div[id|=modalmonger]').style.display = 'flex';
 			}
 			document.body.className += ' modalmonger';
 			e.preventDefault();
