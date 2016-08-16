@@ -3,7 +3,7 @@
 Plugin Name: Modal Monger
 Plugin URI:  https://github.com/andrewklimek/modalmonger/
 Description: a very light modal shortcode that isn't that ugly
-Version:     1.1
+Version:     1.2.0
 Author:      Andrew J Klimek
 Author URI:  https://readycat.net
 License:     GPL2
