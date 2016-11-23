@@ -56,6 +56,7 @@ function modalmonger_shortcode( $atts, $content = '' ) {
 		'width' => 0,
 		'height' => 0,
 		'login' => null,
+		'link' => 1,
 	), $atts, 'modalmonger' );
 	
 	// Cleaning up, using empty(), and re-stating defaults since they can filter with 'shortcode_atts_modalmonger'
@@ -69,9 +70,11 @@ function modalmonger_shortcode( $atts, $content = '' ) {
 	$height = empty( $atts['height'] ) ? '' : "height: {$atts['height']};";
 	$style = ! ( $width || $height ) ? '' : " style='{$width}{$height}'";
 	
+	$link = ! $atts['link'] ? '' : "<a{$id} href='{$href}'{$class} data-modalmonger-trigger={$suffix}>{$label}</a>";
+	
 	$content = !empty($atts['login'] ) ? wp_login_form( array('echo' => false ) ) : do_shortcode( $content );
-	$content = "
-		<a{$id} href='{$href}'{$class} data-modalmonger-trigger={$suffix}>{$label}</a>
+	
+	$content = "{$link}
 		<div id='modalmonger-{$suffix}' class='modalmonger' style='display:none;'>
 			<div class='modalmonger-content'{$style}>
 				<a class='modalmonger-close' href='/' data-modalmonger='{$suffix}'>
