@@ -5,7 +5,7 @@ Plugin URI:  https://github.com/andrewklimek/modalmonger/
 Description: a very light modal shortcode that isn't that ugly
 Version:     1.3.0
 Author:      Andrew J Klimek
-Author URI:  https://readycat.net
+Author URI:  https://github.com/andrewklimek
 License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
